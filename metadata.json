@@ -1,0 +1,6 @@
+{
+  "name": "Findora – Lost & Found Hub",
+  "description": "A modern, attractive, and responsive Lost and Found web platform helping people report lost items, report found items, search belongings, and connect with finders.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

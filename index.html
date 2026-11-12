@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Findora – Lost & Found Hub | Reconnect With Your Belongings</title>
+  <meta name="description" content="Findora is a modern Lost and Found hub helping students and communities report lost belongings, list found items, and safely reconnect.">
+  <meta property="og:title" content="Findora – Lost & Found Hub">
+  <meta property="og:description" content="Lost Something? Let's Find It Together. Report, search, and recover lost and found items.">
+  <meta property="og:type" content="website">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- External Stylesheet -->
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+
+  <!-- =========================================================================
+       Navigation Header
+       ========================================================================= -->
+  <header class="header">
+    <div class="container nav-container">
+      <!-- Brand Logo -->
+      <a href="#home" class="brand">
+        <div class="brand-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            <circle cx="11" cy="11" r="3"></circle>
+          </svg>
+        </div>
+        <div class="brand-name">Find<span>ora</span></div>
+      </a>
+
+      <!-- Navigation Links -->
+      <nav class="nav-menu" id="navMenu">
+        <a href="#home" class="nav-link active">Home</a>
+        <a href="#browse" class="nav-link" onclick="filterByNav('lost')">Lost Items</a>
+        <a href="#browse" class="nav-link" onclick="filterByNav('found')">Found Items</a>
+        <a href="#how-it-works" class="nav-link">How It Works</a>
+        <a href="#about" class="nav-link">About</a>
+      </nav>
+
+      <!-- Header Actions -->
+      <div class="nav-actions">
+        <!-- Theme Toggle Button -->
+        <button id="themeToggleBtn" class="theme-toggle-btn" aria-label="Toggle theme mode" title="Switch Theme">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+          </svg>
+        </button>
+
+        <!-- Primary Action -->
+        <button id="openReportLostBtn" class="btn btn-primary btn-sm">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+          Report Item
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button id="mobileMenuBtn" class="mobile-menu-toggle" aria-label="Open mobile menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       Hero Section
+       ========================================================================= -->
+  <section class="hero-section" id="home">
+    <div class="hero-glow"></div>
+    <div class="container hero-grid">
+      <div class="hero-content">
+        <div class="hero-badge">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon>
+          </svg>
+          Community Lost & Found Hub
+        </div>
+
+        <h1 class="hero-title">
+          Lost Something? <br>
+          <span class="gradient-text">Let's Find It Together.</span>
+        </h1>
+
+        <p class="hero-subtitle">
+          Findora helps students, staff, and community members quickly report missing items, post belongings found on campus or in town, and safely reunite them with their owners.
+        </p>
+
+        <div class="hero-cta-group">
+          <button id="heroReportLostBtn" class="btn btn-lost">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            Report Lost Item
+          </button>
+
+          <button id="heroReportFoundBtn" class="btn btn-found">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
+              <polyline points="22 4 12 14.01 9 11.01"></polyline>
+            </svg>
+            Report Found Item
+          </button>
+
+          <a href="#browse" class="btn btn-secondary">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            Browse Listings
+          </a>
+        </div>
+
+        <!-- Metric Counters Row -->
+        <div class="hero-stats-row">
+          <div class="stat-item">
+            <span class="stat-number" id="totalCountStat">6</span>
+            <span class="stat-label">Total Items Reported</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="activeCountStat">6</span>
+            <span class="stat-label">Active Community Inquiries</span>
+          </div>
+          <div class="stat-item">
+            <span class="stat-number" id="resolvedCountStat">0</span>
+            <span class="stat-label">Reunited Belongings</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual Card with Generated Illustration -->
+      <div class="hero-visual">
+        <div class="hero-image-card">
+          <img src="/src/assets/images/findora_hero_1794320378513.jpg" alt="Findora Lost and Found Community Illustration" referrerpolicy="no-referrer">
+        </div>
+        <div class="hero-floating-card">
+          <div class="floating-icon">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+          </div>
+          <div class="floating-info">
+            <h4>100% Free & Open</h4>
+            <p>Built for Campus & Community safety</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       Browse, Search & Filter Section
+       ========================================================================= -->
+  <section class="browse-section" id="browse">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Explore Listings</span>
+        <h2 class="section-title">Recently Reported Items</h2>
+        <p class="section-desc">Search through missing and found items or filter by category to locate your belongings.</p>
+      </div>
+
+      <!-- Filter Controls Panel -->
+      <div class="filter-panel">
+        <div class="filter-grid">
+          <!-- Keyword Search -->
+          <div class="search-input-wrapper">
+            <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+            </svg>
+            <input type="text" id="searchInput" class="search-input" placeholder="Search by name, description, location...">
+          </div>
+
+          <!-- Category Filter -->
+          <div>
+            <select id="categoryFilter" class="custom-select" aria-label="Filter by category">
+              <option value="all">All Categories</option>
+              <option value="Electronics">Electronics (Phones, Laptops, Earbuds)</option>
+              <option value="Wallets & Bags">Wallets, Purses & Bags</option>
+              <option value="Documents & IDs">Documents, Cards & IDs</option>
+              <option value="Keys & Jewelry">Keys & Jewelry</option>
+              <option value="Clothing & Accessories">Clothing & Accessories</option>
+              <option value="Pets">Pets & Animals</option>
+              <option value="Others">Others</option>
+            </select>
+          </div>
+
+          <!-- Sort Order -->
+          <div>
+            <select id="sortFilter" class="custom-select" aria-label="Sort items">
+              <option value="newest">Sort: Recently Posted</option>
+              <option value="oldest">Sort: Oldest First</option>
+              <option value="date">Sort: Incident Date</option>
+            </select>
+          </div>
+
+          <!-- Status Segmented Controls -->
+          <div class="status-tabs" role="tablist">
+            <button class="status-tab-btn active" data-status="all" role="tab">All</button>
+            <button class="status-tab-btn" data-status="lost" role="tab">Lost</button>
+            <button class="status-tab-btn" data-status="found" role="tab">Found</button>
+          </div>
+        </div>
+
+        <!-- Filter Summary & Reset -->
+        <div class="filter-summary-row">
+          <span id="itemsCountDisplay">Showing items...</span>
+          <button id="clearFilterBtn" class="clear-filter-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="18" y1="6" x2="6" y2="18"></line>
+              <line x1="6" y1="6" x2="18" y2="18"></line>
+            </svg>
+            Clear Filters
+          </button>
+        </div>
+      </div>
+
+      <!-- Items Grid Display -->
+      <div id="itemsGrid" class="items-grid">
+        <!-- Rendered dynamically by script.js -->
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       How It Works Section
+       ========================================================================= -->
+  <section class="how-it-works-section" id="how-it-works">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Simple Process</span>
+        <h2 class="section-title">How Findora Works</h2>
+        <p class="section-desc">Reconnecting with your lost belongings is straightforward with our 3-step community workflow.</p>
+      </div>
+
+      <div class="steps-grid">
+        <!-- Step 1 -->
+        <div class="step-card">
+          <span class="step-badge">01</span>
+          <div class="step-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+              <polyline points="14 2 14 8 20 8"></polyline>
+              <line x1="12" y1="18" x2="12" y2="12"></line>
+              <line x1="9" y1="15" x2="15" y2="15"></line>
+            </svg>
+          </div>
+          <h3 class="step-title">1. Post a Report</h3>
+          <p class="step-desc">Fill out a simple form detailing the item name, approximate location, date, and contact details. You can even upload a photo.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="step-card">
+          <span class="step-badge">02</span>
+          <div class="step-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8"></circle>
+              <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              <circle cx="11" cy="11" r="3"></circle>
+            </svg>
+          </div>
+          <h3 class="step-title">2. Search & Match</h3>
+          <p class="step-desc">Use live keyword filters, categories, and status tags to easily check whether someone has already found and listed your item.</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="step-card">
+          <span class="step-badge">03</span>
+          <div class="step-icon-wrapper">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+              <circle cx="9" cy="7" r="4"></circle>
+              <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+              <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+            </svg>
+          </div>
+          <h3 class="step-title">3. Reconnect & Claim</h3>
+          <p class="step-desc">Reach out directly via provided email or phone. Verify ownership safely and pick up your belonging with peace of mind.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       About Section & Safety Tips
+       ========================================================================= -->
+  <section class="about-section" id="about">
+    <div class="container about-grid">
+      <div class="about-content">
+        <span class="section-tag">About The Platform</span>
+        <h2>Building Trust, One Reunited Belonging at a Time</h2>
+        <p>
+          Findora was designed as a modern Lost & Found hub to solve the frustration of lost items on campuses, transit hubs, and public venues. Instead of scattered notice boards or lost social media posts, Findora centralizes inquiries into one easy-to-search repository.
+        </p>
+
+        <ul class="about-features-list">
+          <li class="about-feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span><strong>Instant Frontend Synchronization:</strong> All posts are saved immediately in your browser's persistent storage.</span>
+          </li>
+          <li class="about-feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span><strong>Image Upload Preview:</strong> Add photo proof directly using file drag-and-drop or device camera.</span>
+          </li>
+          <li class="about-feature-item">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            <span><strong>Zero Clutter UI:</strong> Fast keyword matching, category tags, and responsive mobile-first architecture.</span>
+          </li>
+        </ul>
+
+        <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+          <button id="openReportFoundBtn" class="btn btn-found">Report a Found Item</button>
+          <a href="#browse" class="btn btn-secondary">Search All Items</a>
+        </div>
+      </div>
+
+      <!-- About Information Box -->
+      <div class="about-box-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem;">
+          <h3 style="font-size: 1.25rem; font-weight: 800; color: var(--text-main);">Project Information</h3>
+          <span class="college-badge">Full Stack Development Demo</span>
+        </div>
+
+        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 1rem;">
+          This web application was engineered strictly using semantic <strong>HTML5</strong>, modern <strong>CSS3</strong> with gradient tokens and dark mode, and clean <strong>Vanilla JavaScript</strong>.
+        </p>
+
+        <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
+          Data is managed in the client session using the Web Storage API (<strong>localStorage</strong>) so your posts persist across browser refreshes without requiring external database provisioning.
+        </p>
+
+        <div class="safety-tips-box">
+          <h4>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            Community Safety Tips
+          </h4>
+          <p>
+            Always arrange handover in well-lit, public locations like the student union or campus security desk. Request distinctive proof of ownership (e.g., unlocking password, wallpaper, serial number) before handing over valuables.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================================
+       Report Item Modal (Lost & Found Tabs)
+       ========================================================================= -->
+  <div class="modal-overlay" id="reportModal" role="dialog" aria-modal="true" aria-labelledby="modalTitleText">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3 id="modalTitleText">Report Lost Item</h3>
+          <p>Provide accurate details to help with quick identification and recovery.</p>
+        </div>
+        <button class="modal-close-btn" id="closeReportModalBtn" aria-label="Close dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body">
+        <!-- Switch between Lost and Found Report -->
+        <div class="modal-form-type-selector">
+          <button type="button" class="type-select-btn active-lost" id="modalReportTypeLost">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"></circle>
+              <line x1="12" y1="8" x2="12" y2="12"></line>
+              <line x1="12" y1="16" x2="12.01" y2="16"></line>
+            </svg>
+            I Lost Something
+          </button>
+          <button type="button" class="type-select-btn" id="modalReportTypeFound">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg>
+            I Found Something
+          </button>
+        </div>
+
+        <form id="reportForm">
+          <!-- Hidden field tracking 'lost' or 'found' -->
+          <input type="hidden" id="formItemType" value="lost">
+
+          <!-- Item Name & Category -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="itemName" class="form-label">Item Title <span class="required">*</span></label>
+              <input type="text" id="itemName" class="form-control" placeholder="e.g., Black Leather Backpack" required>
+            </div>
+            <div class="form-group">
+              <label for="itemCategory" class="form-label">Category <span class="required">*</span></label>
+              <select id="itemCategory" class="form-control" required>
+                <option value="" disabled selected>Select category...</option>
+                <option value="Electronics">Electronics</option>
+                <option value="Wallets & Bags">Wallets & Bags</option>
+                <option value="Documents & IDs">Documents & IDs</option>
+                <option value="Keys & Jewelry">Keys & Jewelry</option>
+                <option value="Clothing & Accessories">Clothing & Accessories</option>
+                <option value="Pets">Pets</option>
+                <option value="Others">Others</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Description -->
+          <div class="form-group">
+            <label for="itemDescription" class="form-label">Detailed Description <span class="required">*</span></label>
+            <textarea id="itemDescription" class="form-control" rows="3" placeholder="Include color, model, brand, distinctive stickers or marks..." required></textarea>
+          </div>
+
+          <!-- Location & Date -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="itemLocation" class="form-label" id="locationLabel">Location <span class="required">*</span></label>
+              <input type="text" id="itemLocation" class="form-control" placeholder="e.g., Campus Library 2nd Floor" required>
+            </div>
+            <div class="form-group">
+              <label for="itemDate" class="form-label" id="dateLabel">Date <span class="required">*</span></label>
+              <input type="date" id="itemDate" class="form-control" required>
+            </div>
+          </div>
+
+          <!-- Contact Name & Contact Info -->
+          <div class="form-row">
+            <div class="form-group">
+              <label for="contactName" class="form-label">Your Name</label>
+              <input type="text" id="contactName" class="form-control" placeholder="e.g., Alex Rivera">
+            </div>
+            <div class="form-group">
+              <label for="contactInfo" class="form-label">Contact Email or Phone <span class="required">*</span></label>
+              <input type="text" id="contactInfo" class="form-control" placeholder="e.g., alex@campus.edu or 555-0199" required>
+            </div>
+          </div>
+
+          <!-- Optional Image Upload -->
+          <div class="form-group">
+            <label class="form-label">Item Photo (Optional)</label>
+            <div class="image-upload-dropzone" id="uploadDropzone">
+              <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                <circle cx="8.5" cy="8.5" r="1.5"></circle>
+                <polyline points="21 15 16 10 5 21"></polyline>
+              </svg>
+              <div class="upload-text">Click to browse or drag & drop a photo</div>
+              <div class="upload-subtext">PNG, JPG, or WEBP up to 2MB</div>
+            </div>
+
+            <input type="file" id="imageFileInput" accept="image/*" style="display: none;">
+
+            <div class="image-preview-container" id="imagePreviewContainer">
+              <img id="imagePreview" src="" alt="Selected item preview">
+              <button type="button" class="remove-img-btn" id="removeImgBtn" title="Remove photo">✕</button>
+            </div>
+          </div>
+
+          <!-- Modal Actions -->
+          <div class="modal-footer" style="padding-inline: 0; padding-bottom: 0;">
+            <button type="button" class="btn btn-secondary" id="cancelReportBtn">Cancel</button>
+            <button type="submit" class="btn btn-lost" id="reportSubmitBtn">Publish Report</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Item Details Modal
+       ========================================================================= -->
+  <div class="modal-overlay" id="detailsModal" role="dialog" aria-modal="true" aria-labelledby="detailsModalTitle">
+    <div class="modal-container">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3 id="detailsModalTitle">Item Details</h3>
+          <p>Complete information and contact details</p>
+        </div>
+        <button class="modal-close-btn" id="closeDetailsModalBtn" aria-label="Close dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+
+      <div class="modal-body" id="detailsModalContent">
+        <!-- Injected dynamically by script.js -->
+      </div>
+    </div>
+  </div>
+
+  <!-- =========================================================================
+       Confirm Delete Modal
+       ========================================================================= -->
+  <div class="modal-overlay" id="deleteModal" role="dialog" aria-modal="true">
+    <div class="modal-container" style="max-width: 440px;">
+      <div class="modal-header">
+        <div class="modal-title-group">
+          <h3 style="color: var(--lost-color);">Delete Listing?</h3>
+          <p>This action will remove the item from local demo storage.</p>
+        </div>
+        <button class="modal-close-btn" id="closeDeleteModalBtn" aria-label="Close dialog">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p style="font-size: 0.95rem; color: var(--text-muted); line-height: 1.5;">
+          Are you sure you want to delete this listing? You can always create a new post or reload default sample data.
+        </p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" id="cancelDeleteBtn">Keep Listing</button>
+        <button type="button" class="btn btn-danger-outline btn-sm" id="confirmDeleteBtn" style="background:#ef4444; color:white; border-color:#ef4444;">
+          Confirm Delete
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+  <!-- =========================================================================
+       Footer
+       ========================================================================= -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="#home" class="brand">
+            <div class="brand-icon">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="11" cy="11" r="8"></circle>
+                <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+              </svg>
+            </div>
+            <div class="brand-name">Find<span>ora</span></div>
+          </a>
+          <p>
+            Findora is a college Full Stack Development demo project empowering communities to reconnect with their misplaced belongings.
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h4>Quick Navigation</h4>
+          <ul class="footer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#browse" onclick="filterByNav('all')">All Items</a></li>
+            <li><a href="#browse" onclick="filterByNav('lost')">Lost Items</a></li>
+            <li><a href="#browse" onclick="filterByNav('found')">Found Items</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Popular Categories</h4>
+          <ul class="footer-links">
+            <li><a href="#browse" onclick="filterByCategoryNav('Electronics')">Electronics</a></li>
+            <li><a href="#browse" onclick="filterByCategoryNav('Wallets & Bags')">Wallets & Bags</a></li>
+            <li><a href="#browse" onclick="filterByCategoryNav('Documents & IDs')">Documents & IDs</a></li>
+            <li><a href="#browse" onclick="filterByCategoryNav('Keys & Jewelry')">Keys & Jewelry</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Project & Contact</h4>
+          <p style="font-size: 0.875rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem;">
+            Have questions or suggestions for Findora? Reach out to the student project coordinator:
+          </p>
+          <div style="font-size: 0.85rem; color: var(--text-main); font-weight: 600;">
+            📧 support@findora-hub.org
+          </div>
+          <div style="font-size: 0.85rem; color: var(--text-main); font-weight: 600; margin-top: 0.25rem;">
+            📍 Campus Innovation Center, Room 304
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <div>
+          © 2026 Findora – Lost & Found Hub. Created for College FSD Project.
+        </div>
+        <div style="display: flex; align-items: center; gap: 1rem;">
+          <span style="font-size: 0.8rem; color: var(--text-muted);">Saved with HTML5 LocalStorage</span>
+          <span class="college-badge">Vanilla JS</span>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Quick Nav Helper Script for Navigation Links -->
+  <script>
+    function filterByNav(status) {
+      const btn = document.querySelector(`.status-tab-btn[data-status="${status}"]`);
+      if (btn) btn.click();
+      const el = document.getElementById('browse');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function filterByCategoryNav(cat) {
+      const select = document.getElementById('categoryFilter');
+      if (select) {
+        select.value = cat;
+        select.dispatchEvent(new Event('change'));
+      }
+      const el = document.getElementById('browse');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  </script>
+
+  <!-- Main JavaScript File -->
+  <script src="./script.js"></script>
+</body>
+</html>
